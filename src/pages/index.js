@@ -2,6 +2,8 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
+import axios from "axios";
+import cache from "memory-cache";
 
 export default function Home({ products }) {
 	console.log(products);
@@ -27,9 +29,18 @@ export default function Home({ products }) {
 }
 
 export async function getServerSideProps(context) {
-	const products = await fetch("https://fakestoreapi.com/products")
-		.then((res) => res.json())
-		.catch((err) => err.json());
+	const url = "https://fakestoreapi.com/products";
+	let products = [];
+
+	const cachedResponse = cache.get(url);
+
+	if (cachedResponse) {
+		products = cachedResponse;
+	} else {
+		const hours = 24;
+		products = await axios.get(url).then((res) => res.data);
+		cache.put(url, products, hours * 1000 * 60 * 60);
+	}
 
 	return {
 		props: {

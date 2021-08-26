@@ -4,11 +4,26 @@ import {
 	SearchIcon,
 	ShoppingCartIcon,
 } from "@heroicons/react/outline";
-
 import { signIn, signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
+import { useEffect } from "react";
 
 function Header() {
 	const [session] = useSession();
+	const router = useRouter();
+
+	const items = useSelector(selectItems);
+
+	const moveToHomePage = () => {
+		router.push("/");
+		console.log("Routed to Homepage");
+	};
+
+	useEffect(() => {
+		console.log("Items ===> ", items);
+	}, [items]);
 
 	return (
 		<header>
@@ -17,6 +32,7 @@ function Header() {
 				{/* Logo */}
 				<div className="mt-2 mb-1 flex items-center flex-grow sm:flex-grow-0">
 					<Image
+						onClick={moveToHomePage}
 						src="/amazon-logo.png"
 						height={35}
 						width={150}
@@ -50,9 +66,12 @@ function Header() {
 						<p>Returns</p>
 						<p className="font-extrabold md:text-sm">& Orders</p>
 					</div>
-					<div className="relative link flex items-center">
+					<div
+						onClick={() => router.push("/checkout")}
+						className="relative link flex items-center"
+					>
 						<span className="absolute bg-yellow-400 rounded-full h-4 w-4 text-center text-black top-0 right-0 md:right-11 font-bold">
-							5
+							{items.length}
 						</span>
 
 						<ShoppingCartIcon className="h-8" />
