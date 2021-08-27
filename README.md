@@ -1,28 +1,5 @@
-# Installation Steps
+# Amazon Clone FrontEnd Next JS
 
-
-
-## Using npm
-
-Run commands
-
-1) ```npm install```
-
-
-2) ```npm run dev```
-
-
-## Or using yarn
-
-Run commands 
-
-1) ```npm install --global yarn```
-
-2) ```yarn install```
-
-3) ```yarn run dev```
-
-
-### If you see the window below then you are set to build AMAZON 2.0!
-
-![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
+![CoverPhoto](https://user-images.githubusercontent.com/62747193/131051700-51317b2f-d8fa-40a1-a366-e9407bddbfdd.png)
+![desktop-2](https://user-images.githubusercontent.com/62747193/131051803-b32a1db0-e244-405d-b98d-142c789c4b2e.png)
+![mobile](https://user-images.githubusercontent.com/62747193/131051813-917929c5-ee77-4eb0-aa01-0b413b71622d.png)
